@@ -5,6 +5,12 @@ body {
   color: #1d1d1d;
 }
 
+h1 {
+  line-height: 50px;
+  font-size: 36px;
+  font-weight: 600;
+}
+
 /* jumbotron */
 @media (min-width: 320px) and (max-width: 767px) {
   .jumbotron {

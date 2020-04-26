@@ -65,7 +65,7 @@
                 you a helping hand to save.
               </p>
               <button class="btn btn-lg" type="button">
-                <a href="#form">Add Portfolio</a>
+                <a href="#addPortofolio">Add Portfolio</a>
               </button>
             </div>
           </div>
@@ -79,11 +79,13 @@
     </div>
 
     <!-- FORM AND DOUGHNUT-->
-    <div class="container mt-5">
+    <div class="container mt-5" id="addPortofolio">
+      <h1>Lets Add Your Portfolio</h1>
       <div class="row">
         <div class="col-md-6">
           <!-- form -->
           <form class="form-group mt-5" id="form">
+            <p>Choose your stocks:</p>
             <input
               class="form-control"
               id="stockname"
@@ -92,6 +94,7 @@
               placeholder="Stockname"
             />
             <br />
+            <p>Determine investment duration:</p>
             <input
               class="form-control"
               id="duration"
@@ -100,6 +103,7 @@
               placeholder="Duration"
             />
             <br />
+            <p>Determine your investment amount:</p>
             <input
               class="form-control"
               id="amount"
