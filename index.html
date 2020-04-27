@@ -11,6 +11,12 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+      integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+      crossorigin="anonymous"
+    />
   </head>
 
   <body>
@@ -81,36 +87,45 @@
     <!-- FORM AND DOUGHNUT-->
     <div class="container mt-5" id="addPortofolio">
       <h1>Lets Add Your Portfolio</h1>
+
       <div class="row">
         <div class="col-md-6">
           <!-- form -->
-          <form class="form-group mt-5" id="form">
+          <form class="form-group mt-3" id="form">
             <p>Choose your stocks:</p>
-            <input
-              class="form-control"
-              id="stockname"
-              type="text"
-              name="stockname"
-              placeholder="Stockname"
-            />
-            <br />
+            <div class="form-group">
+              <select class="form-control" id="stockname">
+                <option id="AAPL" value="AAPL">AAPL</option>
+                <option id="FB" value="FB">FB</option>
+                <option id="AMZN" value="AMZN">AMZN</option>
+                <option id="NFLX" value="NFLX">NFLX</option>
+                <option id="GOOG" value="GOOG">GOOG</option>
+              </select>
+            </div>
             <p>Determine investment duration:</p>
             <input
               class="form-control"
               id="duration"
-              type="text"
+              type="number"
               name="duration"
               placeholder="Duration"
+              required
             />
             <br />
             <p>Determine your investment amount:</p>
-            <input
-              class="form-control"
-              id="amount"
-              type="number"
-              name="amount"
-              placeholder="Amount"
-            />
+            <div class="input-group">
+              <span class="input-group-addon">
+                $
+              </span>
+              <input
+                class="form-control"
+                id="amount"
+                type="number"
+                name="amount"
+                placeholder="Amount"
+                required
+              />
+            </div>
             <br />
             <!-- <div class="dropdown" id="stock">
         <button
@@ -129,7 +144,13 @@
           <a class="dropdown-item" href="#">Something elsehere</a>
         </div>
       </div> -->
-            <button type="submit form-control" id="submit-form">Submit</button>
+            <button
+              class="button btn-primary"
+              type="submit form-control"
+              id="submit-form"
+            >
+              Submit
+            </button>
           </form>
         </div>
         <!-- doughnut chart -->
@@ -141,15 +162,105 @@
 
     <!-- OUTPUT -->
     <!-- Stocks Movement -->
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-md-6"></div>
-        <!-- LINE chart -->
-        <div class="col-md-6">
-          <canvas id="lineChart" width="400" height="400"></canvas>
+    <div class="container mt-5" id="stocksmovement"></div>
+
+    <!-- Footer -->
+    <hr />
+    <footer class="page-footer font-small text-center pt-4">
+      <!-- Footer Links -->
+      <div class="container text-center text-md-left">
+        <!-- Footer links -->
+        <div class="row text-center text-md-left mt-3 pb-3">
+          <!-- Grid column -->
+          <div class="col-lg-3 col-xl-3 mx-auto mt-3 center">
+            <img src="./assets/logo.png" width="200px" alt="cortyna" />
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-lg-2 col-xl-2 mx-auto mt-3">
+            <p class="mw-100 center">
+              <a class="a" href="./pomodoro/landing.html">POMODORO</a>
+            </p>
+            <p class="mw-100 center">
+              <a class="a" href="./workout/landing.html">WORKOUT</a>
+            </p>
+            <p class="mw-100 center">
+              <a class="a" href="http://cortynachat.herokuapp.com">LIVE CHAT</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-semi-bold">Sponsors</h6>
+            <p>
+              <a href="#!">Become an Affiliate</a>
+            </p>
+            <p>
+              <a href="#!">Shipping Rates</a>
+            </p>
+            <p>
+              <a href="#!">Help</a>
+            </p>
+          </div>
+
+          <!-- Grid column -->
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-semi-bold">Contact</h6>
+            <p>
+              <i class="fas fa-home mr-3" aria-hidden="true"></i>Jakarta,
+              Indonesia
+            </p>
+            <!-- <p>
+                        <a class="b" href="mailto:permitningbo@gmail.com"><i class="fas fa-envelope mr-3"></i>
+                            permitningbo@gmail.com</a></p> -->
+            <a
+              class="a"
+              target="_blank"
+              href="mailto:cortyna@outlook.com?subject=Hi!"
+              ><i class="fas fa-envelope" aria-hidden="true"></i>
+              &nbsp;&nbsp;&nbsp;cortyna@outlook.com
+              <p></p
+            ></a>
+          </div>
+          <!-- Grid column -->
         </div>
+        <!-- Footer links -->
+
+        <hr />
+
+        <!-- Grid row -->
+        <div class="row d-flex align-items-center">
+          <!-- Grid column -->
+          <div class="col-lg-8">
+            <!--Copyright-->
+            <p class="text-center text-md-left">
+              © 2020 Copyright:
+              <a href="https://mdbootstrap.com/education/bootstrap/">
+                <strong>cortyna.com</strong>
+              </a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-lg-4 ml-lg-0">
+            <!-- Social buttons -->
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
       </div>
-    </div>
+      <!-- Footer Links -->
+    </footer>
 
     <!-- Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
