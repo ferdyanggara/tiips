@@ -5,6 +5,10 @@ body {
   color: #1d1d1d;
 }
 
+.hidden {
+  display: none;
+}
+
 h1 {
   line-height: 50px;
   font-size: 36px;
@@ -79,4 +83,8 @@ img {
   vertical-align: middle;
   background-color: transparent;
   border: 1px solid transparent;
+}
+
+html {
+  scroll-behavior: smooth;
 }

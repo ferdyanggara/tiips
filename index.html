@@ -17,9 +17,10 @@
       integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
       crossorigin="anonymous"
     />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   </head>
 
-  <body>
+  <body data-aos-duration="400" data-aos-delay="0" data-aos-easing="ease">
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
@@ -45,13 +46,15 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
+          <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link active" href="#"
               >Home <span class="sr-only">(current)</span></a
             >
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
-            <a class="nav-item nav-link disabled" href="#">Disabled</a>
+            <a class="nav-item nav-link ml-auto" href="#results">News</a>
+            <a class="nav-item nav-link ml-auto" href="#addportofolio"
+              >Portofolio</a
+            >
+            <a class="nav-item nav-link ml-auto" href="#footer">Footer</a>
           </div>
         </div>
       </div>
@@ -64,7 +67,13 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-5">
-            <div class="jumbotron mt-4">
+            <div
+              class="mt-4 jumbotron aos-init"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-back"
+              data-aos-offset="0"
+            >
               <h1>Achieve Your Financial Goals Anytime</h1>
               <p>
                 Creating a very low entry barrier to value investing and give
@@ -76,7 +85,13 @@
             </div>
           </div>
           <div class="col-lg-7">
-            <div class="ui">
+            <div
+              class="ui aos-init"
+              data-aos="fade-zoom-in"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-back"
+              data-aos-offset="0"
+            >
               <img class="img-thumbnail" src="././assets/ui1.webp" alt="" />
             </div>
           </div>
@@ -85,8 +100,15 @@
     </div>
 
     <!-- FORM AND DOUGHNUT-->
-    <div class="container mt-5" id="addPortofolio">
-      <h1>Lets Add Your Portfolio</h1>
+    <div
+      class="container mt-5 aos-init"
+      data-aos="fade-right"
+      data-aos-duration="1000"
+      id="addPortofolio"
+    >
+      <h1 style="font-size: 36px; font-weight: 600; color: #21439c;">
+        Your Investment Portfolio
+      </h1>
 
       <div class="row">
         <div class="col-md-6">
@@ -104,17 +126,26 @@
               </select>
             </div>
 
-            <p>Determine investment duration:</p>
-            <input
-              class="form-control"
-              id="duration"
-              type="number"
-              name="duration"
-              placeholder="Duration"
-              required
-              min="1"
-              max="5"
-            />
+            <p>Investment Contribution period:</p>
+            <div class="input-group">
+              <input
+                class="form-control"
+                id="duration"
+                type="number"
+                name="duration"
+                placeholder="Duration"
+                required
+                min="1"
+                max="5"
+              />
+              <span class="input-group-addon">
+                <select name="weekmonth" id="weekmonth">
+                  <option value="Week">Week</option>
+                  <option value="Month">Month</option>
+                </select>
+              </span>
+            </div>
+
             <br />
             <p>Determine your investment amount:</p>
             <div class="input-group">
@@ -154,22 +185,34 @@
 
     <!-- show your stockname , duration , and investment amount -->
     <div class="container mt-3">
-      <h2 class="text-center mb-3">Stocks Selected</h2>
-      <div class="row" id="yourstock"></div>
+      <h2 class="text-center mb-3 hidden" id="x">Stocks Selected</h2>
+      <div class="row" id="showstock"></div>
     </div>
 
     <!-- Stocks Movement -->
-    <div class="container mt-5" id="stocksmovement">
+    <div
+      class="container mt-5 aos-init"
+      id="stocksmovement"
+      data-aos="fade-left"
+      data-aos-duration="1000"
+    >
       <canvas id="line-chart" width="800" height="450"></canvas>
     </div>
 
     <!-- related news -->
-    <h2 class="text-center">Related News</h2>
-    <div class="container mt-2" id="news-list"></div>
 
+    <br />
+    <section id="results" class="hidden mt-2 mb-5 aos-init">
+      <h2 class="text-center">Related News</h2>
+      <div class="container">
+        <div class="pl-3 pr-3 ml-3 mr-3">
+          <div class="row mt-3" id="results-list"></div>
+        </div>
+      </div>
+    </section>
     <!-- Footer -->
     <hr />
-    <footer class="page-footer font-small text-center pt-4">
+    <footer id="footer" class="page-footer font-small text-center pt-4">
       <!-- Footer Links -->
       <div class="container text-center text-md-left">
         <!-- Footer links -->
@@ -183,15 +226,17 @@
           <hr class="w-100 clearfix d-md-none" />
 
           <!-- Grid column -->
+
           <div class="col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-semi-bold">Direct</h6>
             <p class="mw-100 center">
-              <a class="a" href="./pomodoro/landing.html">POMODORO</a>
+              <a class="a" href="#">HOME</a>
             </p>
             <p class="mw-100 center">
-              <a class="a" href="./workout/landing.html">WORKOUT</a>
+              <a class="a" href="#">ADD PORTOFOLIO</a>
             </p>
             <p class="mw-100 center">
-              <a class="a" href="http://cortynachat.herokuapp.com">LIVE CHAT</a>
+              <a class="a" href="#">YOUR STOCKS</a>
             </p>
           </div>
           <!-- Grid column -->
@@ -219,8 +264,8 @@
           <div class="col-lg-3 col-xl-3 mx-auto mt-3">
             <h6 class="text-uppercase mb-4 font-weight-semi-bold">Contact</h6>
             <p>
-              <i class="fas fa-home mr-3" aria-hidden="true"></i>Jakarta,
-              Indonesia
+              <i class="fas fa-home mr-3" aria-hidden="true"></i> Wan Chai, Hong
+              Kong
             </p>
             <!-- <p>
                         <a class="b" href="mailto:permitningbo@gmail.com"><i class="fas fa-envelope mr-3"></i>
@@ -228,9 +273,9 @@
             <a
               class="a"
               target="_blank"
-              href="mailto:cortyna@outlook.com?subject=Hi!"
+              href="mailto:tiips@investips.com?subject=Hi!"
               ><i class="fas fa-envelope" aria-hidden="true"></i>
-              &nbsp;&nbsp;&nbsp;cortyna@outlook.com
+              &nbsp;&nbsp;&nbsp;tiips@investips.com
               <p></p
             ></a>
           </div>
@@ -246,9 +291,9 @@
           <div class="col-lg-8">
             <!--Copyright-->
             <p class="text-center text-md-left">
-              © 2020 Copyright:
+              © 2020 by TIPS Dollar (HK) Ltd. All Rights Reserved.
               <a href="https://mdbootstrap.com/education/bootstrap/">
-                <strong>cortyna.com</strong>
+                <strong>tiips.com</strong>
               </a>
             </p>
           </div>
@@ -284,5 +329,11 @@
     ></script>
     <script src="app.js"></script>
     <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
+
+<!-- FERDY ANGGARA PRODUCTION -->

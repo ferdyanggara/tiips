@@ -8,6 +8,7 @@ const amount = document.getElementById('amount');
 const newsList = document.getElementById('news-list');
 const stocksMovement = document.getElementById('stocksmovement');
 const yourStock = document.getElementById('yourstock');
+const weekMonth = document.getElementById('weekmonth');
 
 form.addEventListener('submit', addStock);
 
@@ -24,20 +25,21 @@ var color = [
   'rgba(255, 206, 86, 1)',
   'rgba(75, 192, 192, 1)',
   'rgba(153, 102, 255, 1)',
-  'rgba(153, 102, 255, 1)',
+  'rgba(100, 50, 211, 1)',
 ];
 var index = 0;
 
 // create stock dom
 function stockDom() {
-  yourStock.innerHTML += `
-  <div class = 'col-md-2'>
-  <div class="card">
-  <div class="card-body bg-dark text-light">
+  console.log(color);
+  console.log(index);
+  showstock.innerHTML += `<div class = 'col-md-2'>
+  <div class="card" style="width:200px;background-color:${color[index]}">
+  <div class="card-body">
   
   
     <h2>${stockName.value}<h2>
-    <p style='font-size:20px;'>Duration : ${duration.value}</p>
+    <p style='font-size:20px;'>Period : ${duration.value} ${weekMonth.value} </p>
     <p style='font-size:20px;'>Investment Amount : $ ${amount.value}</p>
 
   </div>
@@ -51,22 +53,23 @@ function retrieve(e) {
 
   let topic = stockName.value;
 
-  let apiCall = `http://newsapi.org/v2/everything?q=${topic}&from=2020-04-27&to=2020-04-27&sortBy=popularity&pageSize=5&apiKey=${apiKey}`;
+  let apiCall = `https://newsapi.org/v2/everything?q=${topic}&from=2020-04-27&to=2020-04-27&sortBy=popularity&pageSize=5&apiKey=${apiKey}`;
 
   // get news
   https: http
     .get(apiCall)
     .then(function (data) {
-      data.articles.forEach((article) => {
-        let li = document.createElement('li');
-        let a = document.createElement('a');
+      displayResults(data, 3);
+      //   data.articles.forEach((article) => {
+      //     let li = document.createElement('li');
+      //     let a = document.createElement('a');
 
-        a.setAttribute('href', article.url);
-        a.setAttribute('target', '_blank');
-        a.textContent = article.title;
-        li.appendChild(a);
-        newsList.appendChild(li);
-      });
+      //     a.setAttribute('href', article.url);
+      //     a.setAttribute('target', '_blank');
+      //     a.textContent = article.title;
+      //     li.appendChild(a);
+      //     newsList.appendChild(li);
+      //   });
     })
     .catch((err) => console.log(err));
 }
@@ -156,7 +159,7 @@ function addStock(e) {
     options: {
       title: {
         display: true,
-        text: 'Your Stock',
+        text: 'Stocks Graph',
       },
     },
   });
@@ -171,6 +174,7 @@ function addStock(e) {
   stockName.value = '';
   duration.value = '';
   amount.value = '';
+  $('#x').removeClass('hidden');
 
   e.preventDefault();
 }
@@ -178,7 +182,42 @@ function addStock(e) {
 // function retrieve(e) {
 //   const apiKey = '40fb5e0404e345999353d4db49879216';
 
-//   let topic = stockName.value;
-
-//   let url = `http://newsapi.org/v2/everything?q=${topic}&apiKey=${apiKey}`;
 // }
+
+let topic = stockName.value;
+
+const apiKey = '522569483aea47dbb6d9061205fcd0df';
+
+const searchURL = `http://newsapi.org/v2/everything?q=${topic}&from=2020-04-27&to=2020-04-27&sortBy=popularity&apiKey=${apiKey}`;
+
+// function formatQueryParams(params) {
+//   const queryItems = Object.keys(params).map(
+//     (key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
+//   );
+//   return queryItems.join('&');
+// }
+
+const resultList = document.getElementById('results-list');
+function displayResults(responseJson, maxResults) {
+  // if there are previous results, remove them
+  console.log(responseJson);
+  // iterate through the articles array, stopping at the max number of results
+  for (let i = 0; (i < responseJson.articles.length) & (i < maxResults); i++) {
+    // for each video object in the articles
+    //array, add a list item to the results
+    //list with the article title, source, author,
+    //description, and image
+    resultList.innerHTML += `<div class="card mt-5" style="width:350px" >
+  <img class="card-img-top" src="${responseJson.articles[i].urlToImage}"alt="Image">
+  <div class="card-body">
+    <h5 class="card-title">By ${responseJson.articles[i].author}</h5>
+    <p class="card-text">${responseJson.articles[i].description}</p>
+     <p class=card-text>${responseJson.articles[i].source.name}</p>
+    <a href="${responseJson.articles[i].url}" class="btn btn-primary" target="_blank">Read more</a>
+  </div>
+</div> 
+`;
+  }
+  //display the results section
+  $('#results').removeClass('hidden');
+}
