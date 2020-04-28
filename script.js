@@ -5,8 +5,9 @@ const form = document.getElementById('form');
 const stockName = document.getElementById('stockname');
 const duration = document.getElementById('duration');
 const amount = document.getElementById('amount');
-const newsHolder = document.getElementById('news-holder');
+const newsList = document.getElementById('news-list');
 const stocksMovement = document.getElementById('stocksmovement');
+const yourStock = document.getElementById('yourstock');
 
 form.addEventListener('submit', addStock);
 
@@ -27,6 +28,23 @@ var color = [
 ];
 var index = 0;
 
+// create stock dom
+function stockDom() {
+  yourStock.innerHTML += `
+  <div class = 'col-md-2'>
+  <div class="card">
+  <div class="card-body bg-dark text-light">
+  
+  
+    <h2>${stockName.value}<h2>
+    <p style='font-size:20px;'>Duration : ${duration.value}</p>
+    <p style='font-size:20px;'>Investment Amount : $ ${amount.value}</p>
+
+  </div>
+</div>
+</div>`;
+}
+
 // fetch news
 function retrieve(e) {
   const apiKey = '40fb5e0404e345999353d4db49879216';
@@ -42,20 +60,13 @@ function retrieve(e) {
       data.articles.forEach((article) => {
         let li = document.createElement('li');
         let a = document.createElement('a');
-        let div = document.createElement('div');
-        let div2 = document.createElement('div');
 
         a.setAttribute('href', article.url);
         a.setAttribute('target', '_blank');
         a.textContent = article.title;
         li.appendChild(a);
-        div2.appendChild(li);
-        div.appendChild(div2);
+        newsList.appendChild(li);
       });
-
-      div.setAttribute('class', 'container mt-2 card');
-      div2.setAttribute('class', 'card-body');
-      newsHolder.innerHTML += div;
     })
     .catch((err) => console.log(err));
 }
@@ -84,6 +95,7 @@ function addStock(e) {
   stockChartXValuesFunction = [];
   fetchStock();
   retrieve();
+  stockDom();
   stockLabelArray.push(stockName.value);
   investmentAmount.push(amount.value);
   // Doughnut Chart

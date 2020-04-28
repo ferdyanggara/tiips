@@ -100,8 +100,10 @@
                 <option id="AMZN" value="AMZN">AMZN</option>
                 <option id="NFLX" value="NFLX">NFLX</option>
                 <option id="GOOG" value="GOOG">GOOG</option>
+                <option id="MSFT" value="MSFT">MSFT</option>
               </select>
             </div>
+
             <p>Determine investment duration:</p>
             <input
               class="form-control"
@@ -110,6 +112,8 @@
               name="duration"
               placeholder="Duration"
               required
+              min="1"
+              max="5"
             />
             <br />
             <p>Determine your investment amount:</p>
@@ -124,26 +128,12 @@
                 name="amount"
                 placeholder="Amount"
                 required
+                max="1000"
+                min="100"
               />
             </div>
             <br />
-            <!-- <div class="dropdown" id="stock">
-        <button
-          class="btn btn-secondary dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Dropdown button
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something elsehere</a>
-        </div>
-      </div> -->
+
             <button
               class="button btn-primary"
               type="submit form-control"
@@ -161,12 +151,21 @@
     </div>
 
     <!-- OUTPUT -->
+
+    <!-- show your stockname , duration , and investment amount -->
+    <div class="container mt-3">
+      <h2 class="text-center mb-3">Stocks Selected</h2>
+      <div class="row" id="yourstock"></div>
+    </div>
+
     <!-- Stocks Movement -->
     <div class="container mt-5" id="stocksmovement">
       <canvas id="line-chart" width="800" height="450"></canvas>
     </div>
 
-    <div class="container mt-2" id="news-holder"></div>
+    <!-- related news -->
+    <h2 class="text-center">Related News</h2>
+    <div class="container mt-2" id="news-list"></div>
 
     <!-- Footer -->
     <hr />
