@@ -5,7 +5,7 @@ const form = document.getElementById('form');
 const stockName = document.getElementById('stockname');
 const duration = document.getElementById('duration');
 const amount = document.getElementById('amount');
-const newsList = document.getElementById('news-list');
+const newsHolder = document.getElementById('news-holder');
 const stocksMovement = document.getElementById('stocksmovement');
 
 form.addEventListener('submit', addStock);
@@ -42,12 +42,20 @@ function retrieve(e) {
       data.articles.forEach((article) => {
         let li = document.createElement('li');
         let a = document.createElement('a');
+        let div = document.createElement('div');
+        let div2 = document.createElement('div');
+
         a.setAttribute('href', article.url);
         a.setAttribute('target', '_blank');
         a.textContent = article.title;
         li.appendChild(a);
-        newsList.appendChild(li);
+        div2.appendChild(li);
+        div.appendChild(div2);
       });
+
+      div.setAttribute('class', 'container mt-2 card');
+      div2.setAttribute('class', 'card-body');
+      newsHolder.innerHTML += div;
     })
     .catch((err) => console.log(err));
 }
